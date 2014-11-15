@@ -1078,7 +1078,7 @@ CA
             <point key="canvasLocation" x="140" y="385.5"/>
         </window>
         <window title="Positions Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="positionWindow" animationBehavior="default" id="710" userLabel="PositionsPanel" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="250" width="443" height="260"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
@@ -1086,15 +1086,15 @@ CA
                 <rect key="frame" x="0.0" y="0.0" width="443" height="260"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="770">
-                        <rect key="frame" x="18" y="20" width="80" height="17"/>
+                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="770">
+                        <rect key="frame" x="18" y="23" width="80" height="17"/>
                         <textFieldCell key="cell" alignment="right" title="Description:" id="771">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="772">
+                    <textField horizontalHuggingPriority="242" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="772">
                         <rect key="frame" x="104" y="20" width="319" height="22"/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" id="773">
                             <font key="font" metaFont="system"/>
@@ -1105,7 +1105,7 @@ CA
                             <binding destination="666" name="value" keyPath="selection.positionDescription" id="821"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="775">
+                    <textField horizontalHuggingPriority="244" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="775">
                         <rect key="frame" x="18" y="70" width="53" height="13"/>
                         <textFieldCell key="cell" alignment="left" title="# out of #" id="776">
                             <font key="font" metaFont="label"/>
@@ -1221,6 +1221,7 @@ CA
                     <constraint firstItem="786" firstAttribute="top" secondItem="790" secondAttribute="bottom" constant="8" id="Glq-xJ-E18"/>
                     <constraint firstItem="790" firstAttribute="top" secondItem="798" secondAttribute="bottom" constant="8" id="IN4-dH-la8"/>
                     <constraint firstItem="775" firstAttribute="top" secondItem="790" secondAttribute="bottom" constant="8" id="J25-Sq-CBt"/>
+                    <constraint firstItem="782" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="775" secondAttribute="trailing" constant="8" id="Kap-UC-XFp"/>
                     <constraint firstItem="782" firstAttribute="top" secondItem="790" secondAttribute="bottom" constant="8" id="Lfa-B9-GUY"/>
                     <constraint firstItem="786" firstAttribute="leading" secondItem="782" secondAttribute="trailing" constant="8" id="MYu-7T-Rup"/>
                     <constraint firstItem="786" firstAttribute="top" secondItem="790" secondAttribute="bottom" constant="8" id="SaH-zE-k5N"/>
@@ -1228,13 +1229,13 @@ CA
                     <constraint firstAttribute="trailing" secondItem="786" secondAttribute="trailing" constant="22" id="ZH6-wn-jHG"/>
                     <constraint firstItem="790" firstAttribute="leading" secondItem="711" secondAttribute="leading" constant="20" id="b6m-07-NNA"/>
                     <constraint firstAttribute="bottom" secondItem="772" secondAttribute="bottom" constant="20" id="duV-BN-Z1P"/>
+                    <constraint firstItem="772" firstAttribute="centerY" secondItem="770" secondAttribute="centerY" id="fCj-17-S6c"/>
                     <constraint firstItem="798" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="711" secondAttribute="leading" constant="20" id="kCT-My-lsz"/>
                     <constraint firstItem="790" firstAttribute="top" secondItem="798" secondAttribute="bottom" constant="8" id="kMf-nW-FMg"/>
                     <constraint firstItem="770" firstAttribute="leading" secondItem="711" secondAttribute="leading" constant="20" id="osH-bJ-j1J"/>
                     <constraint firstAttribute="trailing" secondItem="772" secondAttribute="trailing" constant="20" id="sIm-Oj-4ss"/>
                     <constraint firstItem="772" firstAttribute="leading" secondItem="770" secondAttribute="trailing" constant="8" id="tbb-1r-UcA"/>
                     <constraint firstItem="772" firstAttribute="top" secondItem="786" secondAttribute="bottom" constant="20" id="uvY-E4-T1r"/>
-                    <constraint firstAttribute="bottom" secondItem="770" secondAttribute="bottom" constant="20" id="xL3-hB-PBD"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="199.5" y="471"/>
