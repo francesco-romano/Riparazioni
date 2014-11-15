@@ -41,11 +41,11 @@
                             </binding>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="630">
-                        <rect key="frame" x="20" y="18" width="64" height="25"/>
-                        <buttonCell key="cell" type="roundTextured" title="Remove" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="631">
+                    <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="630">
+                        <rect key="frame" x="20" y="20" width="52" height="22"/>
+                        <buttonCell key="cell" type="square" title="Remove" bezelStyle="shadowlessSquare" alignment="center" controlSize="small" borderStyle="border" inset="2" id="631">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="remove:" target="621" id="632"/>
@@ -59,7 +59,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveName="mainTable" headerView="642" id="641">
-                                    <rect key="frame" x="0.0" y="0.0" width="944" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="961" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -287,11 +287,11 @@
                             <action selector="makeKeyAndOrderFront:" target="710" id="767"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="634">
-                        <rect key="frame" x="92" y="18" width="64" height="25"/>
-                        <buttonCell key="cell" type="roundTextured" title="Add" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="635">
+                    <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="634">
+                        <rect key="frame" x="72" y="20" width="52" height="22"/>
+                        <buttonCell key="cell" type="square" title="Add" bezelStyle="shadowlessSquare" alignment="center" controlSize="small" borderStyle="border" inset="2" id="635">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="add:" target="621" id="636"/>
@@ -320,7 +320,7 @@
                     <constraint firstItem="638" firstAttribute="top" secondItem="703" secondAttribute="bottom" constant="10" id="goK-b5-Gue"/>
                     <constraint firstAttribute="bottom" secondItem="623" secondAttribute="bottom" constant="20" id="iq9-6P-UZX"/>
                     <constraint firstAttribute="bottom" secondItem="634" secondAttribute="bottom" constant="20" id="kjc-wX-m9g"/>
-                    <constraint firstItem="634" firstAttribute="leading" secondItem="630" secondAttribute="trailing" constant="8" id="vGp-Kb-Iso"/>
+                    <constraint firstItem="634" firstAttribute="leading" secondItem="630" secondAttribute="trailing" id="vGp-Kb-Iso"/>
                     <constraint firstItem="630" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="xPS-MX-ddW"/>
                 </constraints>
             </view>
@@ -1138,7 +1138,7 @@ CA
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" id="793">
-                                    <rect key="frame" x="0.0" y="0.0" width="398" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="401" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

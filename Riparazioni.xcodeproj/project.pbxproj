@@ -38,7 +38,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Riparazioni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riparazioni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2CED141A17959E00EC5E22 /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FF7E78010F72853B009DE235 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Italian.lproj/Preferences.xib; sourceTree = "<group>"; };
 		FF855AD60F62E920003B2C89 /* Repair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repair.h; sourceTree = "<group>"; };
 		FF855AD70F62E920003B2C89 /* Repair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repair.m; sourceTree = "<group>"; };
 		FF855AFD0F62EC73003B2C89 /* RepairPrintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairPrintView.h; sourceTree = "<group>"; };
@@ -53,7 +52,6 @@
 		FFCCB4600F71752C0003EC7B /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
 		FFCCB4610F71752C0003EC7B /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
 		FFD0F5A60F6002800020780F /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
-		FFD0F5B80F6007D40020780F /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Italian.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +259,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F7446980DB6B7EA00F9684A /* English */,
-				FFD0F5B80F6007D40020780F /* Italian */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -288,7 +285,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FFCCB45B0F7171960003EC7B /* English */,
-				FF7E78010F72853B009DE235 /* Italian */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
