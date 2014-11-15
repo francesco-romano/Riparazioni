@@ -1,0 +1,31 @@
+/* Saving error */
+"Could not save changes while quitting. Quit anyway?" = "Could not save changes while quitting. Quit anyway?";
+
+"Cancel" = "Cancel";
+
+"Quit anyway" = "Quit anyway";
+
+/* Header */
+"Customer" = "Customer";
+
+"Contact" = "Contact";
+
+"Date" = "Date";
+
+"Description" = "Description";
+
+"Notes" = "Notes";
+
+"Position" = "Position";
+
+"Price" = "Price";
+
+/* Repair */
+"New Customer" = "New Customer";
+/* Position */
+"Empty Position" = "Empty Position";
+
+/* Page Footer */
+"page %d of %d" = "page %1$d of %2$d";
+
+"%d of %d customers" = "%1$d of %2$d customers";
