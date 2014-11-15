@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -15,27 +15,24 @@
         </customObject>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="1" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="305" y="677" width="443" height="181"/>
+            <rect key="contentRect" x="412" y="597" width="443" height="181"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="443" height="181"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView initialItem="4" id="3">
-                        <rect key="frame" x="13" y="35" width="417" height="140"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <tabView initialItem="4" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                        <rect key="frame" x="13" y="39" width="417" height="136"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Print" identifier="1" id="4">
                                 <view key="view" id="7">
-                                    <rect key="frame" x="10" y="33" width="397" height="94"/>
+                                    <rect key="frame" x="10" y="33" width="397" height="90"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button id="16">
-                                            <rect key="frame" x="15" y="67" width="160" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Print Columns Header" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" imageScaling="proportionallyDown" inset="2" id="17">
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                                            <rect key="frame" x="18" y="64" width="160" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Print Columns Header" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="17">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <connections>
@@ -43,23 +40,22 @@
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="38">
-                                            <rect key="frame" x="17" y="23" width="146" height="38"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38">
+                                            <rect key="frame" x="20" y="20" width="146" height="38"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             <size key="cellSize" width="146" height="18"/>
                                             <size key="intercellSpacing" width="4" height="2"/>
-                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="41">
+                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="41">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Print current view" imagePosition="left" alignment="left" state="on" tag="1" imageScaling="proportionallyDown" inset="2" id="39">
+                                                    <buttonCell type="radio" title="Print current view" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="39">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
-                                                    <buttonCell type="radio" title="Print all data" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="40">
+                                                    <buttonCell type="radio" title="Print all data" imagePosition="left" alignment="left" inset="2" id="40">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -70,25 +66,29 @@
                                             </connections>
                                         </matrix>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="38" firstAttribute="leading" secondItem="16" secondAttribute="leading" id="629-vx-q77"/>
+                                        <constraint firstItem="38" firstAttribute="top" secondItem="16" secondAttribute="bottom" constant="8" symbolic="YES" id="FDF-GR-ARc"/>
+                                        <constraint firstItem="16" firstAttribute="top" secondItem="7" secondAttribute="top" constant="10" id="eTf-56-SL5"/>
+                                        <constraint firstItem="16" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="rFo-yt-TZc"/>
+                                    </constraints>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Saving" identifier="2" id="5">
                                 <view key="view" id="6">
-                                    <rect key="frame" x="10" y="33" width="397" height="94"/>
+                                    <rect key="frame" x="10" y="33" width="397" height="90"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" id="8">
-                                            <rect key="frame" x="14" y="67" width="124" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                                            <rect key="frame" x="18" y="63" width="124" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DB Saving Location" id="9">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="10">
-                                            <rect key="frame" x="143" y="62" width="202" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="10">
+                                            <rect key="frame" x="148" y="58" width="199" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="11">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -98,9 +98,8 @@
                                                 <binding destination="22" name="value" keyPath="values.savingPath" id="23"/>
                                             </connections>
                                         </textField>
-                                        <button verticalHuggingPriority="750" id="27">
-                                            <rect key="frame" x="130" y="29" width="127" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="27">
+                                            <rect key="frame" x="140" y="31" width="118" height="19"/>
                                             <buttonCell key="cell" type="roundRect" title="Revert to Defaults" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="28">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="cellTitle"/>
@@ -109,18 +108,19 @@
                                                 <action selector="defaultSavingPath:" target="-2" id="31"/>
                                             </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" id="34">
-                                            <rect key="frame" x="14" y="2" width="378" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                                            <rect key="frame" x="6" y="10" width="385" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="You need to restart the application to allow changing to be effective" id="35">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" id="12">
-                                            <rect key="frame" x="348" y="61" width="27" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                                            <rect key="frame" x="350" y="57" width="27" height="19"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="27" id="Q7P-2m-nms"/>
+                                            </constraints>
                                             <buttonCell key="cell" type="roundRect" title="..." bezelStyle="roundedRect" imagePosition="left" alignment="left" borderStyle="border" imageScaling="proportionallyDown" id="13">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="cellTitle"/>
@@ -130,22 +130,43 @@
                                             </buttonCell>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="34" firstAttribute="top" secondItem="27" secondAttribute="bottom" constant="8" id="4Yg-yp-KxI"/>
+                                        <constraint firstAttribute="centerX" secondItem="27" secondAttribute="centerX" id="Dj1-5l-qx2"/>
+                                        <constraint firstItem="8" firstAttribute="top" secondItem="6" secondAttribute="top" constant="10" id="Kh7-Y5-TO7"/>
+                                        <constraint firstItem="8" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" id="QHp-m6-0zG"/>
+                                        <constraint firstItem="10" firstAttribute="baseline" secondItem="12" secondAttribute="baseline" id="VX1-hX-MEv"/>
+                                        <constraint firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="Ycw-6f-R1n"/>
+                                        <constraint firstItem="10" firstAttribute="top" secondItem="6" secondAttribute="top" constant="10" id="Zbe-s7-OHg"/>
+                                        <constraint firstItem="12" firstAttribute="leading" secondItem="10" secondAttribute="trailing" constant="3" id="nSi-Ie-lJu"/>
+                                        <constraint firstItem="27" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="8" id="qZJ-PK-dzs"/>
+                                        <constraint firstAttribute="trailing" secondItem="34" secondAttribute="trailing" constant="8" id="rWs-Lm-FNN"/>
+                                        <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="20" id="tmv-yf-s4M"/>
+                                        <constraint firstItem="10" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="8" id="vxm-9o-TOx"/>
+                                    </constraints>
                                 </view>
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
-                    <button verticalHuggingPriority="750" id="46">
-                        <rect key="frame" x="380" y="18" width="43" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundRect" title="Ok" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="47">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="46">
+                        <rect key="frame" x="371" y="13" width="58" height="32"/>
+                        <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="47">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="closePanel:" target="-2" id="48"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="20" symbolic="YES" id="3UX-7z-Lcu"/>
+                    <constraint firstItem="3" firstAttribute="trailing" secondItem="46" secondAttribute="trailing" id="6fA-oF-yH7"/>
+                    <constraint firstAttribute="bottom" secondItem="46" secondAttribute="bottom" constant="20" id="AxP-7P-5rA"/>
+                    <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" constant="12" symbolic="YES" id="dZI-8r-TRL"/>
+                    <constraint firstItem="46" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8" id="lXr-SS-zof"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="qAz-97-uOO"/>
+                </constraints>
             </view>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="22"/>
