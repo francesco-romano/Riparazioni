@@ -85,7 +85,7 @@
 	
     fileManager = [NSFileManager defaultManager];
     if ( ![fileManager fileExistsAtPath:filePath isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:filePath attributes:nil];
+        [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
     url = [NSURL fileURLWithPath: [filePath stringByAppendingPathComponent: @"Riparazioni.sql"]];

@@ -73,7 +73,7 @@
     return YES; 
 }
 
-- (NSRect)rectForPage:(int)i 
+- (NSRect)rectForPage:(NSInteger)i
 { 
     // Note the current page 
     currentPage = i - 1;

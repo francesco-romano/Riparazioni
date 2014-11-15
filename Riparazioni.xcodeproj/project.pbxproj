@@ -37,6 +37,7 @@
 		77C8280C06725ACE000B614F /* Riparazioni_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Riparazioni_AppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Riparazioni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riparazioni.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2CED141A17959E00EC5E22 /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF7E78010F72853B009DE235 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Italian; path = Italian.lproj/Preferences.xib; sourceTree = "<group>"; };
 		FF855AD60F62E920003B2C89 /* Repair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repair.h; sourceTree = "<group>"; };
 		FF855AD70F62E920003B2C89 /* Repair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repair.m; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		FF855AFE0F62EC73003B2C89 /* RepairPrintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairPrintView.m; sourceTree = "<group>"; };
 		FF8612330F755FA70033D4F2 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/RiparazioniHelp; sourceTree = "<group>"; };
 		FF86127B0F7561DC0033D4F2 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Italian; path = Italian.lproj/RiparazioniHelp; sourceTree = "<group>"; };
-		FF8612B00F7567570033D4F2 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF9BF8E10F72A6170058577F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF9BF8EE0F72A6AF0058577F /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF9BF94B0F72AC350058577F /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -203,6 +203,7 @@
 				French,
 				German,
 				Italian,
+				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Riparazioni */;
 			projectDirPath = "";
@@ -251,7 +252,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
-				FF8612B00F7567570033D4F2 /* Italian */,
+				FF2CED141A17959E00EC5E22 /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
