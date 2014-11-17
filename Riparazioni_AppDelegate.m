@@ -57,7 +57,7 @@
         return managedObjectModel;
     }
 	
-    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];    
     return managedObjectModel;
 }
 
@@ -206,10 +206,9 @@
  
 - (void) dealloc {
 
-    [managedObjectContext release], managedObjectContext = nil;
-    [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
-    [managedObjectModel release], managedObjectModel = nil;
-    [super dealloc];
+    managedObjectContext = nil;
+    persistentStoreCoordinator = nil;
+    managedObjectModel = nil;
 }
 
  - (IBAction)print:(id)sender {
@@ -226,14 +225,12 @@
 		 NSSortDescriptor * date = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
 		 NSArray * sorts = [NSArray arrayWithObjects: customer, date, nil];
 		 [fetch setSortDescriptors:sorts];
-		 [customer release];
-		 [date release];
 		 NSError *error;
 		 if (!(printContent = [[self managedObjectContext] executeFetchRequest:fetch error:&error])) 
 			 [NSApp presentError:error];
 		 
 		 
-		 [fetch release], fetch = nil;
+		 fetch = nil;
 	 }
 	 NSPrintOperation *op = [NSPrintOperation printOperationWithView:[RepairPrintView printViewFromRepairs:printContent]];
 	 [op runOperation];
