@@ -27,10 +27,12 @@
 	[panel setCanCreateDirectories:YES];
 	[panel setCanChooseDirectories:YES];
 	[panel setAllowsMultipleSelection:NO];
-	if ([panel runModalForDirectory:[savingPath stringValue] file:nil] == NSCancelButton)
-		return;
-	NSArray * directories = [panel filenames];
-	[[NSUserDefaults standardUserDefaults] setValue:[directories objectAtIndex:0] forKey:@"savingPath"];
+    [panel setDirectoryURL:[NSURL URLWithString:[savingPath stringValue]]];
+    if ([panel runModal] == NSFileHandlingPanelCancelButton)
+        return;
+    
+	NSArray * directories = [panel URLs];
+	[[NSUserDefaults standardUserDefaults] setValue:[[directories objectAtIndex:0] absoluteString] forKey:@"savingPath"];
 	
 }
 
