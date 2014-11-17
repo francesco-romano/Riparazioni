@@ -35,16 +35,10 @@
 		
 }
 
-- (void) dealloc
-{
-	[repairs release];
-	[attributes release];
-	[super dealloc];
-}
 
 + (NSView *) printViewFromRepairs:(NSArray *) theArray
 {
-	return [[[RepairPrintView alloc] initWithArray: theArray] autorelease];
+	return [[RepairPrintView alloc] initWithArray: theArray];
 }
 
 #pragma mark pagination
@@ -98,6 +92,8 @@
 	if (headers) {
 		lines -= HEADERS_LINES;
 	}
+    if (lines <= 0) lines = 1;
+    
 	numberOfPages = [repairs count] / lines;
 	if ([repairs count] % lines)
 		numberOfPages +=1;
@@ -154,7 +150,7 @@
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	
 	NSMutableDictionary * numberDictionary = [NSMutableDictionary dictionaryWithDictionary:attributes];
-	NSMutableParagraphStyle * paragraph = [[[NSMutableParagraphStyle alloc] init] autorelease];
+	NSMutableParagraphStyle * paragraph = [[NSMutableParagraphStyle alloc] init];
 	[paragraph setAlignment:NSRightTextAlignment];
 	[numberDictionary setObject:paragraph forKey:NSParagraphStyleAttributeName];
 	
@@ -259,8 +255,6 @@
 	[[NSString stringWithFormat:NSLocalizedString(@"%d of %d records",nil), printIndex, [repairs count]] drawInRect:recordNumberRect withAttributes:attributes];
 	// end footer
 	
-	[numberFormatter release];
-	[dateFormatter release];
 } 
 
 
