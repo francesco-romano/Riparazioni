@@ -14,6 +14,8 @@
 		31F489852B26070300A7DFBD /* RiparazioniTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489842B26070300A7DFBD /* RiparazioniTests.swift */; };
 		31F4898F2B26070400A7DFBD /* RiparazioniUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4898E2B26070400A7DFBD /* RiparazioniUITests.swift */; };
 		31F489912B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489902B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift */; };
+		31F4899E2B260A1500A7DFBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */; };
+		31F489A12B260A4E00A7DFBD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 31F489A02B260A4E00A7DFBD /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 		31F4898A2B26070400A7DFBD /* RiparazioniUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiparazioniUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F4898E2B26070400A7DFBD /* RiparazioniUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniUITests.swift; sourceTree = "<group>"; };
 		31F489902B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F489A12B260A4E00A7DFBD /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +99,7 @@
 		31F489712B26070300A7DFBD /* Riparazioni */ = {
 			isa = PBXGroup;
 			children = (
+				31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */,
 				31F489722B26070300A7DFBD /* RiparazioniApp.swift */,
 				31F489742B26070300A7DFBD /* ContentView.swift */,
 				31F489762B26070300A7DFBD /* Assets.xcassets */,
@@ -145,6 +150,9 @@
 			dependencies = (
 			);
 			name = Riparazioni;
+			packageProductDependencies = (
+				31F489A02B260A4E00A7DFBD /* FirebaseFirestore */,
+			);
 			productName = Riparazioni;
 			productReference = 31F4896F2B26070300A7DFBD /* Riparazioni.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 31F489662B26070300A7DFBD;
+			packageReferences = (
+				31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 31F489702B26070300A7DFBD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,6 +246,7 @@
 			files = (
 				31F4897A2B26070300A7DFBD /* Preview Assets.xcassets in Resources */,
 				31F489772B26070300A7DFBD /* Assets.xcassets in Resources */,
+				31F4899E2B260A1500A7DFBD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +588,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		31F489A02B260A4E00A7DFBD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31F489672B26070300A7DFBD /* Project object */;
 }
