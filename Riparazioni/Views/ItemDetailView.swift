@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ItemDetailView: View {
     @Environment(\.dismiss) private var dismiss
-
+    
     @Binding var item: Item
     let shouldSaveChanges: (_ item: Item) -> Void
     
     @State private var selectedState: ItemState = .new
     @State private var stateAdditionalText: String = ""
+    @State private var completedHasDate: Bool = false
+    @State private var stateAdditionalDate: Date = Date()
+    @State private var dummyDate = Date()
     // TODO: add additional info here.
     
     var body: some View {
@@ -32,14 +35,26 @@ struct ItemDetailView: View {
                 
                 Picker("State", selection:$selectedState) {
                     Text("New").tag(ItemState.new)
-                    Text("Pending").tag(ItemState.pending(""))
-                    Text("Completed").tag(ItemState.completed(""))
-                    Text("Collected").tag(ItemState.collected)
+                    Text("Pending").tag(ItemState.pending("", dummyDate))
+                    Text("Completed").tag(ItemState.completed("", nil))
+                    Text("Collected").tag(ItemState.collected(dummyDate))
                 }
-                // Show the text field only if the state is Pending or Completed.
-                TextField("Details:", text: $stateAdditionalText).opacity((
-                    selectedState == .pending("") || selectedState == .completed("")
-                ) ? 1 : 0)
+                HStack {
+                    switch selectedState {
+                    case .pending(_, _):
+                        TextField("Details:", text: $stateAdditionalText)
+                        DatePicker("Pending Date", selection: $stateAdditionalDate, displayedComponents: [.date])
+                    case .completed(_,_):
+                        TextField("Details:", text: $stateAdditionalText)
+                        Toggle(isOn: $completedHasDate){
+                            Text("Being notified?")
+                        }.toggleStyle(.checkbox)
+                        DatePicker("", selection: $stateAdditionalDate, displayedComponents: [.date]).opacity(completedHasDate ? 1 : 0)
+                    case .collected(_):
+                        DatePicker("Collection Date", selection: $stateAdditionalDate, displayedComponents: [.date])
+                    default: EmptyView()
+                    }
+                }
                 TextField("Notes", text: $item.notes)
                 
             }
@@ -61,12 +76,18 @@ struct ItemDetailView: View {
                 // Update the selected state depending on the item.state.
                 // We need to remove the associated value.
                 switch item.state {
-                case .pending(let string):
-                    selectedState = .pending("")
+                case .pending(let string, let date):
+                    selectedState = .pending("", dummyDate)
                     stateAdditionalText = string
-                case .completed(let string):
-                    selectedState = .completed("")
+                    stateAdditionalDate = date
+                case .completed(let string, let date):
+                    selectedState = .completed("", nil)
                     stateAdditionalText = string
+                    completedHasDate = date != nil
+                    stateAdditionalDate = date ?? Date()
+                case .collected(let date):
+                    selectedState = .collected(dummyDate)
+                    stateAdditionalDate = date
                 default:
                     // No associated value. Just assign the state.
                     selectedState = item.state
@@ -79,9 +100,11 @@ struct ItemDetailView: View {
     private func updateItemState() -> Void {
         item.state = selectedState
         if case .pending = selectedState {
-            item.state = .pending(stateAdditionalText)
+            item.state = .pending(stateAdditionalText, stateAdditionalDate)
         } else if case .completed = selectedState {
-            item.state = .completed(stateAdditionalText)
+            item.state = .completed(stateAdditionalText, stateAdditionalDate)
+        } else if case .collected = selectedState {
+            item.state = .collected(stateAdditionalDate)
         }
     }
 }

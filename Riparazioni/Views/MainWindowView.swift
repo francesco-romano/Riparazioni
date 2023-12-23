@@ -13,6 +13,73 @@ private struct ItemDetailError {
     var alertMessage: String = ""
 }
 
+struct ItemStateSorter: SortComparator {
+    var order: SortOrder = .forward
+    
+    func compare(_ lhs: ItemState, _ rhs: ItemState) -> ComparisonResult {
+        let tagFromEnum: ((ItemState) -> Int) = { state in
+            switch state {
+            case .new:
+                return 1
+            case .pending:
+                return 2
+            case .completed:
+                return 3
+            case .collected:
+                return 4
+            }
+        }
+        
+        let reverseResult: ((ComparisonResult) -> ComparisonResult) = { result in
+            switch result {
+                case .orderedAscending: return .orderedDescending
+                case .orderedSame: return .orderedSame
+                case .orderedDescending: return .orderedAscending
+                }
+        }
+        
+        let lhsTagValue = tagFromEnum(lhs)
+        let rhsTagValue = tagFromEnum(rhs)
+        
+        // Address the case the enums are different.
+        if lhsTagValue < rhsTagValue {
+            return order == .forward ? .orderedAscending : .orderedDescending
+        }
+        if lhsTagValue > rhsTagValue {
+            return order == .forward ? .orderedDescending : .orderedAscending
+        }
+        
+        // Enums are the same. Compare the associated value.
+        var result: ComparisonResult
+        switch (lhs, rhs) {
+        case (.new, .new):
+            result = .orderedSame
+        case (.pending(let lhsLocation, let lhsDate), .pending(let rhsLocation, let rhsDate)):
+            result = lhsLocation.localizedCompare(rhsLocation)
+            if result == .orderedSame  {
+                result = lhsDate.compare(rhsDate)
+            }
+        case (.completed(let lhsLocation, let lhsDate), .completed(let rhsLocation, let rhsDate)):
+            result = lhsLocation.localizedCaseInsensitiveCompare(rhsLocation)
+            if result == .orderedSame  {
+                if rhsDate == nil && lhsDate != nil {
+                    result = .orderedAscending
+                } else if rhsDate != nil && lhsDate == nil {
+                    result = .orderedDescending
+                } else if rhsDate != nil && lhsDate != nil {
+                    result = lhsDate!.compare(rhsDate!)
+                }
+            }
+        case (.collected(let lhsDate), .collected(let rhsDate)):
+            result = lhsDate.compare(rhsDate)
+        default:
+            result = .orderedSame
+        }
+        return order == .forward ? result : reverseResult(result)
+    }
+    
+}
+
 struct MainWindowView: View {
     @EnvironmentObject var dataManager: DataManager
     @Environment(\.undoManager) var undoManager
@@ -22,6 +89,7 @@ struct MainWindowView: View {
     @SceneStorage("show_collected") private var showCollected: Bool = false
     @State var selectedItemID: Item.ID?  // TODO: allow multiple selection for e.g. remove items. The detail view can hide details.
     @State private var sortOrder = [KeyPathComparator(\Item.date, order: .reverse)]
+    @State private var itemStateSorter = ItemStateSorter()
     
     // Detail view. They need two different variables because they are independent.
     // Add.
@@ -77,10 +145,8 @@ struct MainWindowView: View {
                 Text(item.price.formatted(
                     .currency(code:"EUR").locale(Locale(identifier: "it-IT"))))
             }.width(min:60, ideal: 60)
-            // TODO: order by
-            TableColumn("Location") {
-                item in Text(itemStateHumanReadable(itemState:item.state))
-                
+            TableColumn("Location", value: \.state, comparator: itemStateSorter) {
+                item in Text(item.state.description)
             }
             TableColumn("Contact") {
                 Text($0.customer.phone)
@@ -155,10 +221,11 @@ struct MainWindowView: View {
             // Mark item as collected
             Button(action:{
                 guard let selectedItem = selectedItem else { return }
-                if selectedItem.state == .collected {
+                if case .collected(_) = selectedItem.state {
                     return
                 }
-                selectedItem.state = .collected
+                
+                selectedItem.state = .collected(Date())
                 dataManager.saveChangesToItem(selectedItem, withId: selectedItem.id!)
             }) {
                 Text("Mark as collected")
@@ -215,7 +282,7 @@ extension MainWindowView {
     var items: [Item] {
         dataManager.items.filter({item in
             var isCollected = false
-            if case .collected = item.state {
+            if case .collected(_) = item.state {
                 isCollected = true
             }
             
@@ -236,20 +303,6 @@ extension MainWindowView {
         return items.first(where: { item in
             item.id == selectedItemID
         })
-    }
-}
-
-
-func itemStateHumanReadable(itemState: ItemState) -> String {
-    switch itemState {
-    case .new:
-        return ""
-    case .pending(let pendingLocation):
-        return "<Lavorazione>" + pendingLocation
-    case .completed(let completedLocation):
-        return "<Pronto>" + completedLocation
-    case .collected:
-        return "<Ritirato>"
     }
 }
 

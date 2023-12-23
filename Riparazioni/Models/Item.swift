@@ -68,12 +68,12 @@ extension Item {
              price: 10,
              notes: "To clean",
              customer: Customer(name:"Andrea", lastName:"Dicarlo"),
-             state: ItemState.completed("Cassa A")),
+             state: ItemState.completed("Cassa A", nil)),
         Item(id: "item_3",
              description: "Ring to clean",
              date: Date(timeIntervalSinceReferenceDate: 31536000),
              price: 0,
              customer: Customer(name:"Valerio", lastName:"Modugno"),
-             state: ItemState.pending("Orafo1"))
+             state: ItemState.pending("Orafo1", Date()))
     ]
 }
