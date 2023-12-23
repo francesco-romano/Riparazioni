@@ -12,20 +12,11 @@ import FirebaseFirestore
 
 
 // TODO:
-// - Undo manager
+// - Undo manager -- How to fix the Redo, how to handle errors in undo.
 // - Schermata di loading
-// - Manage remotes updates
-
-//class AppDelegate: NSObject, NSApplicationDelegate {
-//    func applicationDidFinishLaunching(_ notification: Notification) {
-//    }
-//}
 
 @main
-struct RiparazioniApp: App {
-    // Register app delegate for Firebase setup.
-//    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    
+struct RiparazioniApp: App {    
     init() {
         // Initialize Firebase.
         FirebaseApp.configure()

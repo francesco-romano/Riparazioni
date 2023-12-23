@@ -31,17 +31,36 @@ struct MainWindowView: View {
     @State private var showItemDetailView: Bool = false
     @State private var detailViewItem: Item = Item()
     @State private var itemDetailError: ItemDetailError = ItemDetailError()
+    // Delete confirmation.
+    @State private var showShouldDeleteItemAlert: Bool = false
+    @State private var shouldDeleteItemAlertTitle: String = ""
     
     var body: some View {
         VStack {
             self.itemsTable
-            .searchable(text: $searchedQuery)
-            .padding()
-            .toolbar {
-                self.toolbar
-            }
-        }.task {
-            await dataManager.loadItems()
+                .onDeleteCommand(perform: selectedItemID == nil ? nil : {
+                    guard selectedItemID != nil else { return }
+                    showShouldDeleteItemAlert = true
+                    shouldDeleteItemAlertTitle = "Delete \(selectedItem?.customer.fullName ?? "")"
+                })
+                .searchable(text: $searchedQuery)
+                .padding()
+                .toolbar {
+                    self.toolbar
+                }
+                .confirmationDialog(
+                    shouldDeleteItemAlertTitle,
+                    isPresented: $showShouldDeleteItemAlert
+                ) {
+                    Button("Delete", role: .destructive) {
+                        dataManager.deleteItem(selectedItem!)
+                    }
+                    Button("Cancel", role: .cancel) {
+                        showShouldDeleteItemAlert = false
+                    }
+                }
+        }.onAppear {
+            dataManager.loadItems()
         }
     }
     
@@ -151,51 +170,41 @@ struct MainWindowView: View {
                 Text("Details")
                 Image(systemName: "info.circle")
             }.disabled(selectedItemID == nil)
-            .sheet(isPresented: $showItemDetailView) {
-                ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
-                    let result = dataManager.saveChangesToItem(item, withId: selectedItemID!!)
-                    guard case let .failure(errorMessage) = result else {
-                        // We need to update the previous item with the new item.
-                        let oldItemIndex = dataManager.items.firstIndex(
-                            where: {anItem in anItem.id == selectedItemID!})
-                        if oldItemIndex == nil {
-                            print("Could not find the item. This should not happend")
+                .sheet(isPresented: $showItemDetailView) {
+                    ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
+                        // Save the old item in case we need to undo the operation.
+                        let oldItem: Item = selectedItem!
+                        let result = dataManager.saveChangesToItem(item, withId: selectedItemID!!)
+                        guard case let .failure(errorMessage) = result else {
+                            // Register the operation in the UndoManager.
+                            undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
+                                dataManager.saveChangesToItem(oldItem, withId: oldItem.id!)
+                                // TODO: What in case of error?
+                            })
+                            
+                            // Close sheet.
+                            showItemDetailView = false
                             return
                         }
-                        let oldItem = dataManager.items[oldItemIndex!]
-                        dataManager.items[oldItemIndex!] = item
+                        itemDetailError.alertShown = true
+                        itemDetailError.alertMessage = errorMessage
+                        itemDetailError.alertTitle = "Save failed."
                         
-                        // Register the operation in the UndoManager.
-                        undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
-                            // Update the list.
-                            manager.items[oldItemIndex!] = oldItem
-                            let result = dataManager.saveChangesToItem(oldItem, withId: oldItem.id!)
-                            // TODO.
-                        })
-                        
-                        // Close sheet.
-                        showItemDetailView = false
-                        return
+                    })
+                    .presentationDetents([.medium, .large])
+                    // Alert modifier must be attached to the sheet otherwise is not shown.
+                    .alert(itemDetailError.alertTitle,
+                           isPresented: $itemDetailError.alertShown,
+                           presenting: itemDetailError.alertMessage) {
+                        message in
+                        Button("Lose changes",  role: .destructive) {
+                            showItemDetailView = false
+                        }
+                    } message: { message in
+                        Text(message)
                     }
-                    itemDetailError.alertShown = true
-                    itemDetailError.alertMessage = errorMessage
-                    itemDetailError.alertTitle = "Save failed."
-
-                })
-                .presentationDetents([.medium, .large])
-                // Alert modifier must be attached to the sheet otherwise is not shown.
-                .alert(itemDetailError.alertTitle,
-                       isPresented: $itemDetailError.alertShown,
-                       presenting: itemDetailError.alertMessage) {
-                    message in
-                    Button("Lose changes",  role: .destructive) {
-                        showItemDetailView = false
-                    }
-                } message: { message in
-                    Text(message)
                 }
-            }
-
+            
         }
     }
 }
@@ -211,12 +220,12 @@ extension MainWindowView {
             // Modifier to the search. If it is collected we will filter depending
             // on the user property value.
             let showCollected = !isCollected || showCollected
-
+            
             if searchedQuery.isEmpty {
                 return showCollected
             }
             return showCollected && (item.customer.fullName.localizedCaseInsensitiveContains(searchedQuery) ||
-            item.description.localizedCaseInsensitiveContains(searchedQuery))
+                                     item.description.localizedCaseInsensitiveContains(searchedQuery))
         }).sorted(using: sortOrder)
     }
     
@@ -226,33 +235,33 @@ extension MainWindowView {
             item.id == selectedItemID
         })
     }
-//    
-//    func saveChangesToItem(_ item: Item, id: Item.ID) -> Void {
-//        let result = dataManager.saveChangesToItem(item: item, withId: id!)
-//        guard case let .failure(errorMessage) = result else {
-//            // We need to update the previous item with the new item.
-//            let oldItemIndex = dataManager.items.firstIndex(
-//                where: {anItem in anItem.id == selectedItemID!})
-//            if oldItemIndex == nil {
-//                print("Could not find the item. This should not happend")
-//                return
-//            }
-//            let oldItem = dataManager.items[oldItemIndex!]
-//            dataManager.items[oldItemIndex!] = item
-//            
-//            // Register the operation in the UndoManager.
-//            undoManager?.registerUndo(withTarget: self, handler: { weakSelf in
-//                weakSelf.saveChangesToItem(oldItem, id: oldItem.id!)
-//            })
-//            
-//            // Close sheet.
-//            showItemDetailView = false
-//            return
-//        }
-//        itemDetailError.alertShown = true
-//        itemDetailError.alertMessage = errorMessage
-//        itemDetailError.alertTitle = "Save failed."
-//    }
+    //
+    //    func saveChangesToItem(_ item: Item, id: Item.ID) -> Void {
+    //        let result = dataManager.saveChangesToItem(item: item, withId: id!)
+    //        guard case let .failure(errorMessage) = result else {
+    //            // We need to update the previous item with the new item.
+    //            let oldItemIndex = dataManager.items.firstIndex(
+    //                where: {anItem in anItem.id == selectedItemID!})
+    //            if oldItemIndex == nil {
+    //                print("Could not find the item. This should not happend")
+    //                return
+    //            }
+    //            let oldItem = dataManager.items[oldItemIndex!]
+    //            dataManager.items[oldItemIndex!] = item
+    //
+    //            // Register the operation in the UndoManager.
+    //            undoManager?.registerUndo(withTarget: self, handler: { weakSelf in
+    //                weakSelf.saveChangesToItem(oldItem, id: oldItem.id!)
+    //            })
+    //
+    //            // Close sheet.
+    //            showItemDetailView = false
+    //            return
+    //        }
+    //        itemDetailError.alertShown = true
+    //        itemDetailError.alertMessage = errorMessage
+    //        itemDetailError.alertTitle = "Save failed."
+    //    }
 }
 
 
