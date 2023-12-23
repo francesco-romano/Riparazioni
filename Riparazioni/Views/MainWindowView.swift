@@ -38,7 +38,7 @@ struct MainWindowView: View {
     var body: some View {
         VStack {
             self.itemsTable
-                .onDeleteCommand(perform: selectedItemID == nil ? nil : {
+                .onDeleteCommand(perform: selectedItem == nil ? nil : {
                     guard selectedItemID != nil else { return }
                     showShouldDeleteItemAlert = true
                     shouldDeleteItemAlertTitle = "Delete \(selectedItem?.customer.fullName ?? "")"
@@ -102,14 +102,16 @@ struct MainWindowView: View {
     
     var toolbar: some View {
         Group {
-            // TODO: a connection status
+            // TODO: a connection statuscheckmark.seal.fill
             Button(action: {
                 showCollected.toggle()
             }) {
                 if (showCollected) {
                     Text("Hide collected")
+                    Image(systemName: "eye.slash")
                 } else {
                     Text("Show collected")
+                    Image(systemName: "eye")
                 }
             }
             Spacer()
