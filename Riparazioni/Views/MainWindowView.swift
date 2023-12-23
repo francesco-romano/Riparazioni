@@ -150,18 +150,18 @@ struct MainWindowView: View {
                     Text(message)
                 }
             }
-            // Remove item // Maybe hide?
+            // Mark item as collected
             Button(action:{
-                if self.selectedItem == nil {
-                    print("No selection")
-                } else {
-                    print("Selected \(selectedItemID.debugDescription)")
+                guard let selectedItem = selectedItem else { return }
+                if selectedItem.state == .collected {
+                    return
                 }
-                
+                selectedItem.state = .collected
+                dataManager.saveChangesToItem(selectedItem, withId: selectedItem.id!)
             }) {
                 Text("Mark as collected")
-                Image(systemName: "minus")
-            }.disabled(selectedItemID == nil)
+                Image(systemName: "checkmark.seal")
+            }.disabled(selectedItem == nil)
             Spacer()
             Button(action: {
                 showItemDetailView = true
@@ -169,7 +169,7 @@ struct MainWindowView: View {
             }) {
                 Text("Details")
                 Image(systemName: "info.circle")
-            }.disabled(selectedItemID == nil)
+            }.disabled(selectedItem == nil)
                 .sheet(isPresented: $showItemDetailView) {
                     ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
                         // Save the old item in case we need to undo the operation.
@@ -235,33 +235,6 @@ extension MainWindowView {
             item.id == selectedItemID
         })
     }
-    //
-    //    func saveChangesToItem(_ item: Item, id: Item.ID) -> Void {
-    //        let result = dataManager.saveChangesToItem(item: item, withId: id!)
-    //        guard case let .failure(errorMessage) = result else {
-    //            // We need to update the previous item with the new item.
-    //            let oldItemIndex = dataManager.items.firstIndex(
-    //                where: {anItem in anItem.id == selectedItemID!})
-    //            if oldItemIndex == nil {
-    //                print("Could not find the item. This should not happend")
-    //                return
-    //            }
-    //            let oldItem = dataManager.items[oldItemIndex!]
-    //            dataManager.items[oldItemIndex!] = item
-    //
-    //            // Register the operation in the UndoManager.
-    //            undoManager?.registerUndo(withTarget: self, handler: { weakSelf in
-    //                weakSelf.saveChangesToItem(oldItem, id: oldItem.id!)
-    //            })
-    //
-    //            // Close sheet.
-    //            showItemDetailView = false
-    //            return
-    //        }
-    //        itemDetailError.alertShown = true
-    //        itemDetailError.alertMessage = errorMessage
-    //        itemDetailError.alertTitle = "Save failed."
-    //    }
 }
 
 
