@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3198C84C2B3487BD00282C4C /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84A2B3487BD00282C4C /* MainWindowView.swift */; };
+		3198C84D2B3487BD00282C4C /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84B2B3487BD00282C4C /* ItemDetailView.swift */; };
+		3198C84F2B3487F200282C4C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84E2B3487F200282C4C /* DataManager.swift */; };
 		31F489732B26070300A7DFBD /* RiparazioniApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489722B26070300A7DFBD /* RiparazioniApp.swift */; };
-		31F489752B26070300A7DFBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489742B26070300A7DFBD /* ContentView.swift */; };
 		31F489772B26070300A7DFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F489762B26070300A7DFBD /* Assets.xcassets */; };
 		31F4897A2B26070300A7DFBD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F489792B26070300A7DFBD /* Preview Assets.xcassets */; };
 		31F489852B26070300A7DFBD /* RiparazioniTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489842B26070300A7DFBD /* RiparazioniTests.swift */; };
@@ -16,6 +18,10 @@
 		31F489912B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489902B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift */; };
 		31F4899E2B260A1500A7DFBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */; };
 		31F489A12B260A4E00A7DFBD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 31F489A02B260A4E00A7DFBD /* FirebaseFirestore */; };
+		31F489A42B26228D00A7DFBD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489A32B26228D00A7DFBD /* Item.swift */; };
+		31F489A62B26230C00A7DFBD /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489A52B26230C00A7DFBD /* Customer.swift */; };
+		31F489AA2B262C2E00A7DFBD /* ItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489A92B262C2E00A7DFBD /* ItemState.swift */; };
+		31F489AD2B2632F400A7DFBD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31F489AC2B2632F400A7DFBD /* FirebaseFirestoreSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3198C84A2B3487BD00282C4C /* MainWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
+		3198C84B2B3487BD00282C4C /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		3198C84E2B3487F200282C4C /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		31F4896F2B26070300A7DFBD /* Riparazioni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riparazioni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F489722B26070300A7DFBD /* RiparazioniApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniApp.swift; sourceTree = "<group>"; };
-		31F489742B26070300A7DFBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		31F489762B26070300A7DFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31F489792B26070300A7DFBD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		31F4897B2B26070300A7DFBD /* Riparazioni.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riparazioni.entitlements; sourceTree = "<group>"; };
@@ -48,6 +56,9 @@
 		31F4898E2B26070400A7DFBD /* RiparazioniUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniUITests.swift; sourceTree = "<group>"; };
 		31F489902B26070400A7DFBD /* RiparazioniUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		31F489A32B26228D00A7DFBD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		31F489A52B26230C00A7DFBD /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		31F489A92B262C2E00A7DFBD /* ItemState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F489A12B260A4E00A7DFBD /* FirebaseFirestore in Frameworks */,
+				31F489AD2B2632F400A7DFBD /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3174698B2B2EE99400039A26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3198C84A2B3487BD00282C4C /* MainWindowView.swift */,
+				3198C84B2B3487BD00282C4C /* ItemDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		31F489662B26070300A7DFBD = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +104,7 @@
 				31F489832B26070300A7DFBD /* RiparazioniTests */,
 				31F4898D2B26070400A7DFBD /* RiparazioniUITests */,
 				31F489702B26070300A7DFBD /* Products */,
+				31F489AB2B2632F400A7DFBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +121,10 @@
 		31F489712B26070300A7DFBD /* Riparazioni */ = {
 			isa = PBXGroup;
 			children = (
+				3174698B2B2EE99400039A26 /* Views */,
+				31F489A22B260CCA00A7DFBD /* Models */,
 				31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */,
 				31F489722B26070300A7DFBD /* RiparazioniApp.swift */,
-				31F489742B26070300A7DFBD /* ContentView.swift */,
 				31F489762B26070300A7DFBD /* Assets.xcassets */,
 				31F4897B2B26070300A7DFBD /* Riparazioni.entitlements */,
 				31F489782B26070300A7DFBD /* Preview Content */,
@@ -134,6 +157,24 @@
 			path = RiparazioniUITests;
 			sourceTree = "<group>";
 		};
+		31F489A22B260CCA00A7DFBD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3198C84E2B3487F200282C4C /* DataManager.swift */,
+				31F489A32B26228D00A7DFBD /* Item.swift */,
+				31F489A52B26230C00A7DFBD /* Customer.swift */,
+				31F489A92B262C2E00A7DFBD /* ItemState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31F489AB2B2632F400A7DFBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +193,7 @@
 			name = Riparazioni;
 			packageProductDependencies = (
 				31F489A02B260A4E00A7DFBD /* FirebaseFirestore */,
+				31F489AC2B2632F400A7DFBD /* FirebaseFirestoreSwift */,
 			);
 			productName = Riparazioni;
 			productReference = 31F4896F2B26070300A7DFBD /* Riparazioni.app */;
@@ -271,8 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31F489752B26070300A7DFBD /* ContentView.swift in Sources */,
+				3198C84F2B3487F200282C4C /* DataManager.swift in Sources */,
+				31F489A42B26228D00A7DFBD /* Item.swift in Sources */,
+				3198C84D2B3487BD00282C4C /* ItemDetailView.swift in Sources */,
+				31F489AA2B262C2E00A7DFBD /* ItemState.swift in Sources */,
+				3198C84C2B3487BD00282C4C /* MainWindowView.swift in Sources */,
 				31F489732B26070300A7DFBD /* RiparazioniApp.swift in Sources */,
+				31F489A62B26230C00A7DFBD /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +652,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		31F489AC2B2632F400A7DFBD /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
