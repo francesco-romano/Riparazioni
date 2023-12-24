@@ -63,6 +63,35 @@ class DataManager: ObservableObject {
         database?.collection(Self.ItemsCollectionKey).document(item.id!).delete()
     }
     
+    func batchUpload(_ items: [Item], cleanFirst: Bool) async -> Result {
+        do {
+            let collectionRef = database?.collection(DataManager.ItemsCollectionKey)
+            
+            // Get new write batch
+            let batch = database!.batch()
+            
+            if cleanFirst {
+                let allDocs = try await collectionRef?.getDocuments().documents
+                // Delete all previous items.
+                allDocs!.forEach({ doc in
+                    batch.deleteDocument(doc.reference)
+                })
+            }
+            
+            // Now insert all new data.
+            for item: Item in items {
+                let newRef = collectionRef!.document()
+                try batch.setData(from: item, forDocument: newRef)
+            }
+            
+            // Commit the batch
+            try await batch.commit()
+            return .success
+        } catch let error {
+            return .failure("\(error)")
+        }
+    }
+    
     
     func loadItems() {
         // To support preview, network operations are no-op.
@@ -113,23 +142,3 @@ class DataManager: ObservableObject {
     }
 }
 
-
-
-
-//        do {
-//            let querySnapshot = try await database!.collection(DataManager.ItemsCollectionKey).getDocuments(source: .default)
-//
-//            var items: [Item] = []
-//            for document in querySnapshot.documents {
-//                let item = try document.data(as: Item.self)
-//                items.append(item)
-//            }
-//            // We need to explicitly capture `items` as constant to allow it being
-//            // used from the main thread.
-//            DispatchQueue.main.async { [items] in
-//                self.items = items
-//            }
-//
-//        } catch {
-//            print("Error getting itmes: \(error)")
-//        }

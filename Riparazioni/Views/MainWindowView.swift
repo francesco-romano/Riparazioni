@@ -168,6 +168,8 @@ struct MainWindowView: View {
     
     var toolbar: some View {
         Group {
+            Text("Items \(items.count) / \(dataManager.items.count)")
+            Spacer()
             // TODO: a connection statuscheckmark.seal.fill
             Button(action: {
                 showCollected.toggle()
@@ -238,7 +240,9 @@ struct MainWindowView: View {
             }) {
                 Text("Details")
                 Image(systemName: "info.circle")
-            }.disabled(selectedItem == nil)
+            }
+            .keyboardShortcut(KeyboardShortcut("i", modifiers: [.command]))
+            .disabled(selectedItem == nil)
                 .sheet(isPresented: $showItemDetailView) {
                     ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
                         // Save the old item in case we need to undo the operation.
