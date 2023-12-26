@@ -1,0 +1,142 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "Add" : {
+
+    },
+    "Being notified?" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Choose file" : {
+
+    },
+    "Collected" : {
+
+    },
+    "Collection Date" : {
+
+    },
+    "Completed" : {
+
+    },
+    "Contact" : {
+
+    },
+    "Customer" : {
+
+    },
+    "Date" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Description" : {
+
+    },
+    "Details" : {
+
+    },
+    "Details:" : {
+
+    },
+    "Done" : {
+
+    },
+    "Email" : {
+
+    },
+    "Erase current DB" : {
+
+    },
+    "Failed to import items" : {
+
+    },
+    "Hide" : {
+
+    },
+    "Hide collected" : {
+
+    },
+    "Import" : {
+
+    },
+    "Import items from backup" : {
+
+    },
+    "Items %lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Items %1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Last name" : {
+
+    },
+    "Location" : {
+
+    },
+    "Lose changes" : {
+
+    },
+    "Mark as collected" : {
+
+    },
+    "Name" : {
+
+    },
+    "New" : {
+
+    },
+    "Next" : {
+
+    },
+    "Notes" : {
+
+    },
+    "OK" : {
+
+    },
+    "Pending" : {
+
+    },
+    "Pending Date" : {
+
+    },
+    "Phone" : {
+
+    },
+    "Price" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Riparazioni" : {
+
+    },
+    "Save" : {
+
+    },
+    "Select file and options" : {
+
+    },
+    "Show collected" : {
+
+    },
+    "State" : {
+
+    }
+  },
+  "version" : "1.0"
+}

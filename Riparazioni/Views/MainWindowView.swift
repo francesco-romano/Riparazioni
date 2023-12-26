@@ -32,10 +32,10 @@ struct ItemStateSorter: SortComparator {
         
         let reverseResult: ((ComparisonResult) -> ComparisonResult) = { result in
             switch result {
-                case .orderedAscending: return .orderedDescending
-                case .orderedSame: return .orderedSame
-                case .orderedDescending: return .orderedAscending
-                }
+            case .orderedAscending: return .orderedDescending
+            case .orderedSame: return .orderedSame
+            case .orderedDescending: return .orderedAscending
+            }
         }
         
         let lhsTagValue = tagFromEnum(lhs)
@@ -133,6 +133,7 @@ struct MainWindowView: View {
     }
     
     var itemsTable: some View {
+        // TODO: macOS 14+ https://developer.apple.com/documentation/SwiftUI/TableColumnCustomization
         Table(selection: $selectedItemID, sortOrder: $sortOrder) {
             TableColumn("Customer", value: \.customer.fullName)
             TableColumn("Date", value: \.date) { item in
@@ -190,36 +191,37 @@ struct MainWindowView: View {
             }) {
                 Text("Add")
                 Image(systemName: "plus")
-            }.sheet(isPresented: $showAddItemView) {
-                ItemDetailView(item: $detailViewAddItem, shouldSaveChanges: { item in
-                    let result = dataManager.addNewItem(item)
-                    guard case let .failure(errorMessage) = result else {
-                        undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
-                            manager.deleteItem(item)
-                        })
-                        // Close sheet.
-                        showAddItemView = false
-                        return
+            }.keyboardShortcut(KeyboardShortcut("n", modifiers: [.command]))
+                .sheet(isPresented: $showAddItemView) {
+                    ItemDetailView(item: $detailViewAddItem, shouldSaveChanges: { item in
+                        let result = dataManager.addNewItem(item)
+                        guard case let .failure(errorMessage) = result else {
+                            undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
+                                manager.deleteItem(item)
+                            })
+                            // Close sheet.
+                            showAddItemView = false
+                            return
+                        }
+                        itemDetailError.alertShown = true
+                        itemDetailError.alertMessage = errorMessage
+                        itemDetailError.alertTitle = "Save failed."
+                        // Failed to save.
+                        
+                    })
+                    .presentationDetents([.medium, .large])
+                    // Alert modifier must be attached to the sheet otherwise is not shown.
+                    .alert(itemDetailError.alertTitle,
+                           isPresented: $itemDetailError.alertShown,
+                           presenting: itemDetailError.alertMessage) {
+                        message in
+                        Button("Lose changes",  role: .destructive) {
+                            showAddItemView = false
+                        }
+                    } message: { message in
+                        Text(message)
                     }
-                    itemDetailError.alertShown = true
-                    itemDetailError.alertMessage = errorMessage
-                    itemDetailError.alertTitle = "Save failed."
-                    // Failed to save.
-                    
-                })
-                .presentationDetents([.medium, .large])
-                // Alert modifier must be attached to the sheet otherwise is not shown.
-                .alert(itemDetailError.alertTitle,
-                       isPresented: $itemDetailError.alertShown,
-                       presenting: itemDetailError.alertMessage) {
-                    message in
-                    Button("Lose changes",  role: .destructive) {
-                        showAddItemView = false
-                    }
-                } message: { message in
-                    Text(message)
                 }
-            }
             // Mark item as collected
             Button(action:{
                 guard let selectedItem = selectedItem else { return }
@@ -232,7 +234,8 @@ struct MainWindowView: View {
             }) {
                 Text("Mark as collected")
                 Image(systemName: "checkmark.seal")
-            }.disabled(selectedItem == nil)
+            }.keyboardShortcut(KeyboardShortcut("r", modifiers: [.command]))
+                .disabled(selectedItem == nil)
             Spacer()
             Button(action: {
                 showItemDetailView = true
@@ -243,40 +246,40 @@ struct MainWindowView: View {
             }
             .keyboardShortcut(KeyboardShortcut("i", modifiers: [.command]))
             .disabled(selectedItem == nil)
-                .sheet(isPresented: $showItemDetailView) {
-                    ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
-                        // Save the old item in case we need to undo the operation.
-                        let oldItem: Item = selectedItem!
-                        let result = dataManager.saveChangesToItem(item, withId: selectedItemID!!)
-                        guard case let .failure(errorMessage) = result else {
-                            // Register the operation in the UndoManager.
-                            undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
-                                dataManager.saveChangesToItem(oldItem, withId: oldItem.id!)
-                                // TODO: What in case of error?
-                            })
-                            
-                            // Close sheet.
-                            showItemDetailView = false
-                            return
-                        }
-                        itemDetailError.alertShown = true
-                        itemDetailError.alertMessage = errorMessage
-                        itemDetailError.alertTitle = "Save failed."
+            .sheet(isPresented: $showItemDetailView) {
+                ItemDetailView(item: $detailViewItem, shouldSaveChanges: { item in
+                    // Save the old item in case we need to undo the operation.
+                    let oldItem: Item = selectedItem!
+                    let result = dataManager.saveChangesToItem(item, withId: selectedItemID!!)
+                    guard case let .failure(errorMessage) = result else {
+                        // Register the operation in the UndoManager.
+                        undoManager?.registerUndo(withTarget: dataManager, handler: { manager in
+                            dataManager.saveChangesToItem(oldItem, withId: oldItem.id!)
+                            // TODO: What in case of error?
+                        })
                         
-                    })
-                    .presentationDetents([.medium, .large])
-                    // Alert modifier must be attached to the sheet otherwise is not shown.
-                    .alert(itemDetailError.alertTitle,
-                           isPresented: $itemDetailError.alertShown,
-                           presenting: itemDetailError.alertMessage) {
-                        message in
-                        Button("Lose changes",  role: .destructive) {
-                            showItemDetailView = false
-                        }
-                    } message: { message in
-                        Text(message)
+                        // Close sheet.
+                        showItemDetailView = false
+                        return
                     }
+                    itemDetailError.alertShown = true
+                    itemDetailError.alertMessage = errorMessage
+                    itemDetailError.alertTitle = "Save failed."
+                    
+                })
+                .presentationDetents([.medium, .large])
+                // Alert modifier must be attached to the sheet otherwise is not shown.
+                .alert(itemDetailError.alertTitle,
+                       isPresented: $itemDetailError.alertShown,
+                       presenting: itemDetailError.alertMessage) {
+                    message in
+                    Button("Lose changes",  role: .destructive) {
+                        showItemDetailView = false
+                    }
+                } message: { message in
+                    Text(message)
                 }
+            }
             
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		315F57662B3B37B50040354F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 315F57652B3B37B50040354F /* Localizable.xcstrings */; };
 		3198C84C2B3487BD00282C4C /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84A2B3487BD00282C4C /* MainWindowView.swift */; };
 		3198C84D2B3487BD00282C4C /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84B2B3487BD00282C4C /* ItemDetailView.swift */; };
 		3198C84F2B3487F200282C4C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C84E2B3487F200282C4C /* DataManager.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		315F57652B3B37B50040354F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3198C84A2B3487BD00282C4C /* MainWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
 		3198C84B2B3487BD00282C4C /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		3198C84E2B3487F200282C4C /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				31F4897B2B26070300A7DFBD /* Riparazioni.entitlements */,
 				31F4899D2B260A1400A7DFBD /* GoogleService-Info.plist */,
 				31F489782B26070300A7DFBD /* Preview Content */,
+				315F57652B3B37B50040354F /* Localizable.xcstrings */,
 			);
 			path = Riparazioni;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 31F489662B26070300A7DFBD;
 			packageReferences = (
@@ -305,6 +309,7 @@
 			files = (
 				31F4897A2B26070300A7DFBD /* Preview Assets.xcassets in Resources */,
 				31F489772B26070300A7DFBD /* Assets.xcassets in Resources */,
+				315F57662B3B37B50040354F /* Localizable.xcstrings in Resources */,
 				31F4899E2B260A1500A7DFBD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = Riparazioni/Riparazioni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 200;
 				DEVELOPMENT_ASSET_PATHS = "\"Riparazioni/Preview Content\"";
 				DEVELOPMENT_TEAM = R694V836SQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -508,7 +513,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.francescoromano.Riparazioni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -524,7 +529,7 @@
 				CODE_SIGN_ENTITLEMENTS = Riparazioni/Riparazioni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 200;
 				DEVELOPMENT_ASSET_PATHS = "\"Riparazioni/Preview Content\"";
 				DEVELOPMENT_TEAM = R694V836SQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -535,7 +540,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.francescoromano.Riparazioni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
