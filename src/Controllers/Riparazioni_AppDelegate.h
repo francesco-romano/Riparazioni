@@ -28,4 +28,6 @@
 - (IBAction) print:(id) sender;
 - (IBAction) openPreferencesPanel:(id) sender;
 
+- (IBAction) exportData:(id)sender;
+
 @end
