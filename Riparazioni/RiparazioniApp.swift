@@ -82,7 +82,11 @@ struct RiparazioniApp: App {
                     // Disable quitting when closing the main window
                     appDelegate.shouldQuitAfterClosingWindow = false
                     NSApplication.shared.keyWindow?.close()
-                    openWindow(id: "import_window") 
+                    openWindow(id: "import_window")
+                })}
+            CommandGroup(after: .importExport) {
+                Button("Logout", action:{
+                    userAuthentication.signOut()
                 })
             }
         }
