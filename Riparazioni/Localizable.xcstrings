@@ -151,6 +151,16 @@
         }
       }
     },
+    "Do you want to logout?" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vuoi fare logout?"
+          }
+        }
+      }
+    },
     "Done" : {
       "localizations" : {
         "it" : {
@@ -263,6 +273,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posizione"
+          }
+        }
+      }
+    },
+    "Login Error" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errore in Login"
+          }
+        }
+      }
+    },
+    "Login in Riparazioni" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effettua il login"
+          }
+        }
+      }
+    },
+    "Logout" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
           }
         }
       }

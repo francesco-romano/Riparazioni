@@ -25,7 +25,8 @@ class DataManager: ObservableObject {
     
     @Published var items: [Item] = []
     @Published var errorMessage: String?
-    
+    @Published var needsLogin: Bool = false  // Triggered in case of login error.
+
     init(withoutDBConnection: Bool = false) {
         if !withoutDBConnection {
             self.database = Firestore.firestore()
@@ -99,13 +100,16 @@ class DataManager: ObservableObject {
             print("This should only happen in Preview mode. If this is not the case, it is a logic error!")
             return
         }
+        errorMessage = nil
         guard listenerRegistration == nil else { return }
         listenerRegistration = database?.collection(Self.ItemsCollectionKey)
             .addSnapshotListener { [weak self]
                 (querySnapshot, error) in
                 guard let documents: [QueryDocumentSnapshot] = querySnapshot?.documents else {
                     // TODO: check if this is an error
+                    // 1. This is called when the user is not authenticated.
                     print("No documents. CHECK: Is this an error?")
+                    self?.needsLogin = true
                     return
                 }
                 self?.items = documents.compactMap{ queryDocumentSnapshot in

@@ -14,6 +14,11 @@
 		3198C8512B38193B00282C4C /* ImportSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C8502B38193B00282C4C /* ImportSceneView.swift */; };
 		3198C8542B38336900282C4C /* ImporterIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C8532B38336900282C4C /* ImporterIntroView.swift */; };
 		3198C8562B38399B00282C4C /* ImporterProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198C8552B38399B00282C4C /* ImporterProgressView.swift */; };
+		31DC0A652B3B519E006953C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 31DC0A642B3B519E006953C2 /* FirebaseAuth */; };
+		31DC0A682B3C0A63006953C2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31DC0A672B3C0A63006953C2 /* GoogleSignInSwift */; };
+		31DC0A6B2B3C1517006953C2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DC0A6A2B3C1517006953C2 /* LoginView.swift */; };
+		31DC0A6D2B3C1C87006953C2 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DC0A6C2B3C1C87006953C2 /* UserAuthentication.swift */; };
+		31DC0A712B3C4FD8006953C2 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DC0A702B3C4FD8006953C2 /* UserDetailView.swift */; };
 		31F489732B26070300A7DFBD /* RiparazioniApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F489722B26070300A7DFBD /* RiparazioniApp.swift */; };
 		31F489772B26070300A7DFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F489762B26070300A7DFBD /* Assets.xcassets */; };
 		31F4897A2B26070300A7DFBD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F489792B26070300A7DFBD /* Preview Assets.xcassets */; };
@@ -53,6 +58,10 @@
 		3198C8502B38193B00282C4C /* ImportSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSceneView.swift; sourceTree = "<group>"; };
 		3198C8532B38336900282C4C /* ImporterIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterIntroView.swift; sourceTree = "<group>"; };
 		3198C8552B38399B00282C4C /* ImporterProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterProgressView.swift; sourceTree = "<group>"; };
+		31DC0A692B3C0AF9006953C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		31DC0A6A2B3C1517006953C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		31DC0A6C2B3C1C87006953C2 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
+		31DC0A702B3C4FD8006953C2 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		31F4896F2B26070300A7DFBD /* Riparazioni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riparazioni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F489722B26070300A7DFBD /* RiparazioniApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiparazioniApp.swift; sourceTree = "<group>"; };
 		31F489762B26070300A7DFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,7 +84,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F489A12B260A4E00A7DFBD /* FirebaseFirestore in Frameworks */,
+				31DC0A652B3B519E006953C2 /* FirebaseAuth in Frameworks */,
 				31F489AD2B2632F400A7DFBD /* FirebaseFirestoreSwift in Frameworks */,
+				31DC0A682B3C0A63006953C2 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +112,8 @@
 			children = (
 				3198C84A2B3487BD00282C4C /* MainWindowView.swift */,
 				3198C84B2B3487BD00282C4C /* ItemDetailView.swift */,
+				31DC0A6A2B3C1517006953C2 /* LoginView.swift */,
+				31DC0A702B3C4FD8006953C2 /* UserDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 		31F489712B26070300A7DFBD /* Riparazioni */ = {
 			isa = PBXGroup;
 			children = (
+				31DC0A692B3C0AF9006953C2 /* Info.plist */,
 				3198C8522B38334600282C4C /* Importer */,
 				3174698B2B2EE99400039A26 /* Views */,
 				31F489A22B260CCA00A7DFBD /* Models */,
@@ -181,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				3198C84E2B3487F200282C4C /* DataManager.swift */,
+				31DC0A6C2B3C1C87006953C2 /* UserAuthentication.swift */,
 				31F489A32B26228D00A7DFBD /* Item.swift */,
 				31F489A52B26230C00A7DFBD /* Customer.swift */,
 				31F489A92B262C2E00A7DFBD /* ItemState.swift */,
@@ -214,6 +229,8 @@
 			packageProductDependencies = (
 				31F489A02B260A4E00A7DFBD /* FirebaseFirestore */,
 				31F489AC2B2632F400A7DFBD /* FirebaseFirestoreSwift */,
+				31DC0A642B3B519E006953C2 /* FirebaseAuth */,
+				31DC0A672B3C0A63006953C2 /* GoogleSignInSwift */,
 			);
 			productName = Riparazioni;
 			productReference = 31F4896F2B26070300A7DFBD /* Riparazioni.app */;
@@ -290,6 +307,7 @@
 			mainGroup = 31F489662B26070300A7DFBD;
 			packageReferences = (
 				31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				31DC0A662B3C0A63006953C2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 31F489702B26070300A7DFBD /* Products */;
 			projectDirPath = "";
@@ -339,10 +357,13 @@
 				31F489A42B26228D00A7DFBD /* Item.swift in Sources */,
 				3198C84D2B3487BD00282C4C /* ItemDetailView.swift in Sources */,
 				31F489AA2B262C2E00A7DFBD /* ItemState.swift in Sources */,
+				31DC0A712B3C4FD8006953C2 /* UserDetailView.swift in Sources */,
 				3198C84C2B3487BD00282C4C /* MainWindowView.swift in Sources */,
 				3198C8542B38336900282C4C /* ImporterIntroView.swift in Sources */,
+				31DC0A6D2B3C1C87006953C2 /* UserAuthentication.swift in Sources */,
 				3198C8512B38193B00282C4C /* ImportSceneView.swift in Sources */,
 				3198C8562B38399B00282C4C /* ImporterProgressView.swift in Sources */,
+				31DC0A6B2B3C1517006953C2 /* LoginView.swift in Sources */,
 				31F489732B26070300A7DFBD /* RiparazioniApp.swift in Sources */,
 				31F489A62B26230C00A7DFBD /* Customer.swift in Sources */,
 			);
@@ -517,12 +538,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Riparazioni/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.francescoromano.Riparazioni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -545,12 +569,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Riparazioni/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.francescoromano.Riparazioni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -676,6 +703,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		31DC0A662B3C0A63006953C2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -687,6 +722,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		31DC0A642B3B519E006953C2 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		31DC0A672B3C0A63006953C2 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31DC0A662B3C0A63006953C2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		31F489A02B260A4E00A7DFBD /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 31F4899F2B260A4E00A7DFBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

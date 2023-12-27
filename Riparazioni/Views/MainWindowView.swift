@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 private struct ItemDetailError {
     var alertShown: Bool = false
@@ -82,6 +83,7 @@ struct ItemStateSorter: SortComparator {
 
 struct MainWindowView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var userAuthentication: UserAuthentication
     @Environment(\.undoManager) var undoManager
     
     // Table and searchable.
@@ -102,6 +104,8 @@ struct MainWindowView: View {
     // Delete confirmation.
     @State private var showShouldDeleteItemAlert: Bool = false
     @State private var shouldDeleteItemAlertTitle: String = ""
+    // Signout confirmation
+    @State private var showUserDetails: Bool = false
     
     var body: some View {
         VStack {
@@ -129,7 +133,9 @@ struct MainWindowView: View {
                 }
         }.onAppear {
             dataManager.loadItems()
-        }
+        }.sheet(isPresented: $dataManager.needsLogin, content: {
+            LoginView().environmentObject(userAuthentication)
+        })
     }
     
     var itemsTable: some View {
@@ -169,6 +175,17 @@ struct MainWindowView: View {
     
     var toolbar: some View {
         Group {
+            Button(action: {
+                showUserDetails.toggle()
+            }) {
+                Image(systemName: "person.badge.shield.checkmark")
+                Text(userAuthentication.userDisplayName ?? "No user")
+            }.popover(isPresented: $showUserDetails, content: {
+                UserDetailView(user: userAuthentication.user!, doLogout: {
+                    userAuthentication.signOut()
+                })
+            }).disabled(userAuthentication.user == nil)
+            Spacer()
             Text("Items \(items.count) / \(dataManager.items.count)")
             Spacer()
             // TODO: a connection statuscheckmark.seal.fill
