@@ -64,6 +64,8 @@ class UserAuthentication: ObservableObject {
         do {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance.signOut()
+            userDisplayName = nil
+            user = nil
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }

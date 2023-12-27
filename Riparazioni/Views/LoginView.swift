@@ -28,7 +28,15 @@ struct LoginView: View {
                     .disabled(loginInProgress)
                     .opacity(loginInProgress ? 0 : 1)
                 ProgressView().opacity(loginInProgress ? 1 : 0)
-            }}.padding()
+            }
+            Spacer()
+            HStack {
+                Spacer()
+                Button("Quit", action: {
+                    exit(EXIT_SUCCESS)
+                })
+            }.padding(.top)
+        }.padding()
             .alert("Login Error",
                    isPresented: $showErrorAlert,
                    actions: {}, message: {

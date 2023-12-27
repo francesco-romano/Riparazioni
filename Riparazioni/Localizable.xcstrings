@@ -417,6 +417,16 @@
         }
       }
     },
+    "Quit" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esci"
+          }
+        }
+      }
+    },
     "Remove" : {
       "localizations" : {
         "it" : {
