@@ -191,6 +191,16 @@
         }
       }
     },
+    "Failed connecting to the DB" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connessione con il DB fallita"
+          }
+        }
+      }
+    },
     "Failed to import items" : {
       "localizations" : {
         "it" : {
@@ -273,6 +283,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posizione"
+          }
+        }
+      }
+    },
+    "Login" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
           }
         }
       }
@@ -377,6 +397,26 @@
         }
       }
     },
+    "Or login using a provider" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppure login con un provider"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
+    },
     "Pending" : {
       "localizations" : {
         "it" : {
@@ -403,6 +443,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Telefono"
+          }
+        }
+      }
+    },
+    "Please check your DB permissions and credentials." : {
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controllare i permessi e le credenziali d'accesso"
           }
         }
       }

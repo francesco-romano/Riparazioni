@@ -25,7 +25,7 @@ class DataManager: ObservableObject {
     
     @Published var items: [Item] = []
     @Published var errorMessage: String?
-    @Published var needsLogin: Bool = false  // Triggered in case of login error.
+    @Published var errorFetchingData: Bool = false  // Triggered in case of login error.
 
     init(withoutDBConnection: Bool = false) {
         if !withoutDBConnection {
@@ -108,8 +108,8 @@ class DataManager: ObservableObject {
                 guard let documents: [QueryDocumentSnapshot] = querySnapshot?.documents else {
                     // TODO: check if this is an error
                     // 1. This is called when the user is not authenticated.
-                    print("No documents. CHECK: Is this an error?")
-                    self?.needsLogin = true
+                    print("No documents received.")
+                    self?.errorFetchingData = true
                     return
                 }
                 self?.items = documents.compactMap{ queryDocumentSnapshot in

@@ -107,6 +107,21 @@ struct MainWindowView: View {
     // Signout confirmation
     @State private var showUserDetails: Bool = false
     
+    @AppStorage("login_enabled") private var loginEnabled = false
+    
+    private var shouldShowLoginWindow: Binding<Bool> { Binding( get: {
+        loginEnabled && dataManager.errorFetchingData
+    }, set: {_ in }
+    )
+    }
+    
+    private var shouldShowFetchErrorAlert: Binding<Bool> { Binding( get: {
+        !loginEnabled && dataManager.errorFetchingData
+    }, set: {_ in }
+    )
+    }
+    
+    
     var body: some View {
         VStack {
             self.itemsTable
@@ -133,9 +148,15 @@ struct MainWindowView: View {
                 }
         }.onAppear {
             dataManager.loadItems()
-        }.sheet(isPresented: $dataManager.needsLogin, content: {
+        }.sheet(isPresented: shouldShowLoginWindow, content: {
             LoginView().environmentObject(userAuthentication)
-        })
+        }).alert("Failed connecting to the DB", isPresented: shouldShowFetchErrorAlert) {
+            Button("OK") {
+                NSApplication.shared.terminate(nil)
+            }
+        } message: {
+            Text("Please check your DB permissions and credentials.")
+        }
     }
     
     var itemsTable: some View {

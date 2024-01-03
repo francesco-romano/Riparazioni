@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             guard let user = user else {
                 self.authRestorationError = error
-                print("Firebase error: \(error!.localizedDescription)")
+                
                 return
             }
             self.userAuthentication?.authenticateFirebase(user: user, callback: {firebaseAuthError in
@@ -44,11 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return shouldQuitAfterClosingWindow
     }
-    
-//    func application(_ application: NSApplication,open urls: [URL]) {
-//        print("URL")
-//        for url in urls {GIDSignIn.sharedInstance.handle(url)}
-//    }
+
 }
 
 @main

@@ -28,7 +28,19 @@ class UserAuthentication: ObservableObject {
     }
     
     // TODO: How to select the browser where to launch the auth?
-    func doLogin(withPresentingWindow window: NSWindow, callback: @escaping ((Error?) -> Void)) {
+    func doLogin(email: String, password: String, callback: @escaping ((Error?) -> Void)) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            guard let result = authResult else {
+                callback(error)
+                return
+            }
+            self.user = result.user
+            // Update also the properties.
+            self.userDisplayName = self.user?.displayName
+        }
+    }
+    
+    func doGoogleSSOLogin(withPresentingWindow window: NSWindow, callback: @escaping ((Error?) -> Void))  {
         GIDSignIn.sharedInstance.signIn(
             withPresenting: window) { signInResult, error in
                 guard let result = signInResult else {

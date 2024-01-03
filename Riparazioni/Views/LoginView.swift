@@ -18,15 +18,27 @@ struct LoginView: View {
     @State var showErrorAlert: Bool = false
     @State var errorMessage: String = ""
     
+    @State var email: String = ""
+    @State var password: String = ""
+    
     var body: some View {
         VStack{
             Text("Login in Riparazioni")
                 .fontWeight(.bold)
                 .padding(.bottom)
             ZStack {
-                GoogleSignInButton(action: handleSignInButton)
-                    .disabled(loginInProgress)
-                    .opacity(loginInProgress ? 0 : 1)
+                VStack {
+                    Form{
+                        TextField("Email", text: $email)
+                            .frame(minWidth: 250)
+                        SecureField("Password", text: $password)
+                        Button("Login", action:handleEmailPasswordLogin).keyboardShortcut(.defaultAction)
+                    }
+                    Text("Or login using a provider")
+                    GoogleSignInButton(action: handleGoogleSSOButton)
+                        .disabled(loginInProgress)
+                        .padding(.horizontal)
+                }.opacity(loginInProgress ? 0 : 1)
                 ProgressView().opacity(loginInProgress ? 1 : 0)
             }
             Spacer()
@@ -44,11 +56,24 @@ struct LoginView: View {
             })
     }
     
-    func handleSignInButton() {
+    func handleEmailPasswordLogin() {
+        loginInProgress = true
+        userAuthenticator.doLogin(email: email, password: password, callback: {error in
+            if error == nil {
+                dismiss()
+            } else {
+                errorMessage = error!.localizedDescription
+                showErrorAlert.toggle()
+            }
+            loginInProgress = false
+        })
+    }
+    
+    func handleGoogleSSOButton() {
         loginInProgress = true
         
         let window = NSApplication.shared.keyWindow!
-        userAuthenticator.doLogin(withPresentingWindow: window, callback: {error in
+        userAuthenticator.doGoogleSSOLogin(withPresentingWindow: window, callback: {error in
             if error == nil {
                 dismiss()
             } else {
